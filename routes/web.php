@@ -20,6 +20,24 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
 
 /*
 |--------------------------------------------------------------------------
+| Dashboard Siswa
+|--------------------------------------------------------------------------
+*/
+Route::get('/dashboard-siswa', function () {
+    return view('dashboard.siswa');
+})->middleware(['auth'])->name('dashboard.siswa');
+
+/*
+|--------------------------------------------------------------------------
+| Dashboard Guru
+|--------------------------------------------------------------------------
+*/
+Route::get('/dashboard-guru', function () {
+    return view('dashboard.guru');
+})->middleware(['auth'])->name('dashboard.guru');
+
+/*
+|--------------------------------------------------------------------------
 | Logout
 |--------------------------------------------------------------------------
 */
@@ -52,7 +70,7 @@ Route::middleware('auth')->group(function () {
 
 /*
 |--------------------------------------------------------------------------
-| Auth routes (login, register, dll dari Breeze/Jetstream)
+| Auth routes
 |--------------------------------------------------------------------------
 */
 require __DIR__.'/auth.php';
