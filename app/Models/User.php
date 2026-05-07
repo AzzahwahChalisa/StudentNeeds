@@ -23,6 +23,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'xp',
     ];
 
     /**
@@ -51,5 +53,15 @@ class User extends Authenticatable
     public function tasks()
     {
         return $this->hasMany(Task::class, 'teacher_id');
+    }
+
+    public function isGuru()
+    {
+        return $this->role == 'guru';
+    }
+
+    public function isSiswa()
+    {
+        return $this->role == 'siswa';
     }
 }
