@@ -4,148 +4,152 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>StudentNeeds Login</title>
+    <title>StudentNeeds</title>
 
     @vite('resources/css/app.css')
+
+    <!-- FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 
-<body class="bg-[#FFF7FA] min-h-screen flex items-center justify-center overflow-hidden relative">
+<body class="bg-[#FEF1F2] min-h-screen overflow-hidden flex items-center justify-center font-[Poppins] relative">
 
-    <!-- background -->
-    <div class="absolute top-[-120px] left-[-120px] w-[420px] h-[420px] bg-pink-200 rounded-full blur-3xl opacity-40"></div>
+    <!-- STICKER -->
+    <img
+        src="{{ asset('images/ikonstroberry.png') }}"
+        class="absolute top-[45px] left-[70px] w-[75px] rotate-[-10deg] opacity-90"
+    >
 
-    <div class="absolute bottom-[-120px] right-[-120px] w-[420px] h-[420px] bg-rose-200 rounded-full blur-3xl opacity-40"></div>
+    <img
+        src="{{ asset('images/ikonstroberry.png') }}"
+        class="absolute bottom-[40px] right-[70px] w-[65px] rotate-[12deg] opacity-80"
+    >
 
-    <!-- CARD -->
-    <div class="w-[1200px] h-[700px] bg-white rounded-[55px] shadow-[0_20px_80px_rgba(255,182,193,0.35)] flex overflow-hidden relative z-10">
+    <!-- MAIN CONTAINER -->
+    <div class="w-[1440px] h-[1024px] flex overflow-hidden">
 
         <!-- LEFT -->
-        <div class="w-1/2 bg-gradient-to-br from-pink-300 via-rose-300 to-pink-400 relative flex flex-col items-center justify-center p-16">
+        <div class="w-1/2 relative flex flex-col items-center justify-center">
 
-            <!-- floating -->
-            <div class="absolute top-10 left-10 text-5xl">🍓</div>
-            <div class="absolute bottom-10 right-10 text-4xl">✨</div>
+            <!-- LOGO -->
+            <div class="absolute top-[110px] flex flex-col items-center">
 
-            <!-- circle -->
-            <div class="w-[340px] h-[340px] rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center mb-10">
+                <img
+                    src="{{ asset('images/ikonstroberry.png') }}"
+                    class="w-[90px] mb-5"
+                >
 
-                <div class="text-[150px]">
-                    🍓
+                <div class="flex gap-2">
+
+                    <h1 class="text-[52px] leading-none font-bold font-['Baloo_2'] text-[#E65F5F]">
+                        Student
+                    </h1>
+
+                    <h1 class="text-[52px] leading-none font-bold font-['Baloo_2'] text-[#6A3A3C]">
+                        Needs
+                    </h1>
+
                 </div>
 
             </div>
 
-            <h1 class="text-6xl font-black text-white mb-5">
-                StudentNeeds
-            </h1>
+            <!-- CHARACTER -->
+            <div class="relative flex items-center justify-center">
 
-            <p class="text-white text-center text-xl max-w-[350px] leading-relaxed">
-                Belajar lebih rapi,
-                tugas lebih teratur,
-                dan sekolah jadi lebih seru ✨
+                <!-- soft background -->
+                <div class="absolute w-[420px] h-[420px] rounded-full bg-[#F8D5D8] opacity-60 blur-2xl"></div>
+
+                <!-- mascot -->
+                <img
+                    src="{{ asset('images/maskotstroberry.png') }}"
+                    class="relative w-[420px] z-10 drop-shadow-[0_15px_30px_rgba(0,0,0,0.10)]"
+                >
+
+            </div>
+
+            <!-- QUOTE -->
+            <p class="absolute bottom-[70px] text-[#8B6666] text-[18px] tracking-wide">
+                organize your school life easier 🍓
             </p>
 
         </div>
 
         <!-- RIGHT -->
-        <div class="w-1/2 flex items-center justify-center bg-[#FFFDFD]">
+        <div class="w-1/2 bg-white flex items-center relative">
 
-            <form
-                method="POST"
-                action="{{ route('login') }}"
-                class="w-[72%]"
+            <!-- floating sticker -->
+            <img
+                src="{{ asset('images/ikonstroberry.png') }}"
+                class="absolute top-[90px] right-[110px] w-[55px] rotate-[15deg] opacity-80"
             >
 
-                @csrf
+            <!-- FORM -->
+            <div class="w-[590px] ml-[85px]">
 
-                <h2 class="text-5xl font-black text-gray-800 mb-3">
-                    Welcome Back!
+                <!-- TITLE -->
+                <h2 class="text-[72px] leading-[80px] font-bold font-['Baloo_2'] text-[#E65F5F] mb-4">
+                    Welcome back!
                 </h2>
 
-                <p class="text-gray-400 text-lg mb-10">
-                    Login ke akun kamu dulu 🍓
+                <!-- SUBTITLE -->
+                <p class="text-[24px] text-[#6A3A3C] font-medium mb-[70px]">
+                    Login to continue to StudentNeeds
                 </p>
 
                 <!-- EMAIL -->
-                <div class="mb-5">
+                <div class="mb-[40px]">
 
-                    <label class="block text-gray-700 font-semibold mb-2">
+                    <label class="block text-[22px] text-[#6A3A3C] font-medium mb-4">
                         Email
                     </label>
 
                     <input
                         type="email"
                         name="email"
-                        placeholder="Enter your email"
-                        class="w-full bg-pink-50 border-0 rounded-3xl p-5 text-lg focus:ring-2 focus:ring-pink-300 outline-none"
-                        required
+
+                        class="w-full h-[82px] rounded-[28px] border border-[#D8B7B7] bg-[#FFFDFD] px-7 text-[20px] outline-none focus:border-[#E65F5F] focus:ring-2 focus:ring-pink-100 transition-all"
                     >
 
                 </div>
 
                 <!-- PASSWORD -->
-                <div class="mb-6">
+                <div class="mb-[65px]">
 
-                    <label class="block text-gray-700 font-semibold mb-2">
+                    <label class="block text-[22px] text-[#6A3A3C] font-medium mb-4">
                         Password
                     </label>
 
                     <input
                         type="password"
                         name="password"
-                        placeholder="Enter your password"
-                        class="w-full bg-pink-50 border-0 rounded-3xl p-5 text-lg focus:ring-2 focus:ring-pink-300 outline-none"
-                        required
+
+                        class="w-full h-[82px] rounded-[28px] border border-[#D8B7B7] bg-[#FFFDFD] px-7 text-[20px] outline-none focus:border-[#E65F5F] focus:ring-2 focus:ring-pink-100 transition-all"
                     >
 
                 </div>
 
-                <!-- remember -->
-                <div class="flex items-center justify-between mb-8">
-
-                    <label class="flex items-center gap-2 text-sm text-gray-500">
-
-                        <input
-                            type="checkbox"
-                            name="remember"
-                            class="rounded text-pink-400"
-                        >
-
-                        Remember me
-
-                    </label>
-
-                    <a
-                        href="{{ route('password.request') }}"
-                        class="text-pink-500 hover:underline text-sm font-medium"
-                    >
-                        Forgot Password?
-                    </a>
-
-                </div>
-
-                <!-- button -->
+                <!-- BUTTON -->
                 <button
-                    class="w-full bg-gradient-to-r from-pink-400 to-rose-400 text-white py-5 rounded-3xl text-lg font-bold hover:scale-[1.02] transition-all duration-300 shadow-lg"
+                    class="w-full h-[82px] rounded-[28px] bg-[#E65F5F] text-white text-[38px] font-bold font-['Baloo_2'] hover:opacity-90 transition-all duration-300 shadow-[0_8px_20px_rgba(230,95,95,0.15)]"
                 >
-                    Log In
+                    Login
                 </button>
 
-                <!-- register -->
-                <p class="text-center text-gray-400 mt-8">
+                <!-- REGISTER -->
+                <p class="text-center text-[18px] text-[#6A3A3C] mt-[30px]">
 
-                    Don't have an account?
+                    Belum punya akun?
 
                     <a
                         href="{{ route('register') }}"
-                        class="text-pink-500 font-bold hover:underline"
+                        class="text-[#E65F5F] font-semibold hover:underline"
                     >
-                        Register
+                        Daftar di sini
                     </a>
 
                 </p>
 
-            </form>
+            </div>
 
         </div>
 
