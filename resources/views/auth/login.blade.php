@@ -1,59 +1,70 @@
 <x-guest-layout>
 
-    <div class="min-h-screen bg-[#FFF6F8] flex items-center justify-center relative overflow-hidden">
+                <!-- PASSWORD -->
+                <div class="mb-6">
 
-        <!-- background blob -->
-        <div class="absolute top-[-80px] left-[-80px] w-[300px] h-[300px] bg-pink-200 rounded-full blur-3xl opacity-50"></div>
-        <div class="absolute bottom-[-100px] right-[-100px] w-[350px] h-[350px] bg-rose-200 rounded-full blur-3xl opacity-40"></div>
+                    <x-input-label
+                        for="password"
+                        :value="__('Password')"
+                        class="text-gray-600 font-semibold mb-2"
+                    />
 
-        <!-- main card -->
-        <div class="w-[1100px] h-[650px] bg-white rounded-[45px] shadow-2xl flex overflow-hidden z-10">
+                    <x-text-input
+                        id="password"
+                        class="block w-full rounded-3xl border-0 bg-pink-50 p-5 focus:ring-pink-300 shadow-sm text-lg"
+                        type="password"
+                        name="password"
+                        required
+                    />
 
-            <!-- LEFT SIDE -->
-            <div class="w-1/2 bg-gradient-to-b from-pink-200 to-rose-300 relative flex flex-col justify-center items-center p-12">
+                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
 
-                <!-- floating strawberries -->
-                <div class="absolute top-10 left-10 text-4xl rotate-[-15deg]">🍓</div>
-                <div class="absolute bottom-12 right-14 text-5xl rotate-[10deg]">🍓</div>
-                <div class="absolute top-32 right-20 text-3xl">✨</div>
-
-                <!-- circle illustration -->
-                <div class="w-[280px] h-[280px] bg-white/40 backdrop-blur-md rounded-full flex items-center justify-center shadow-lg mb-8 border border-white/30">
-                    <div class="text-[120px]">🍓</div>
                 </div>
 
-                <h1 class="text-5xl font-black text-white drop-shadow-md mb-4 tracking-wide">
-                    StudentNeeds
-                </h1>
+                <!-- remember -->
+                <div class="flex items-center justify-between mb-8">
 
-                <p class="text-white text-center text-lg leading-relaxed max-w-[350px]">
-                    Belajar lebih rapi,
-                    tugas lebih teratur,
-                    dan sekolah jadi lebih seru ✨
+                    <label class="flex items-center gap-2 text-sm text-gray-500 font-medium">
+                        <input
+                            type="checkbox"
+                            name="remember"
+                            class="rounded border-pink-300 text-pink-400 focus:ring-pink-300"
+                        >
+                        Remember me
+                    </label>
+
+                    @if (Route::has('password.request'))
+                        <a href="{{ route('password.request') }}"
+                           class="text-sm text-pink-500 hover:text-pink-600 hover:underline font-semibold">
+                            Forgot Password?
+                        </a>
+                    @endif
+
+                </div>
+
+                <!-- BUTTON -->
+                <button
+                    class="w-full bg-gradient-to-r from-pink-400 to-rose-400 hover:scale-[1.02] hover:shadow-2xl transition-all duration-300 text-white py-5 rounded-3xl font-bold text-lg"
+                >
+                    Log In
+                </button>
+
+                <!-- REGISTER -->
+                <p class="text-center text-gray-400 mt-8 text-sm">
+                    Don't have an account?
+
+                    <a href="{{ route('register') }}"
+                       class="text-pink-500 font-bold hover:underline ml-1">
+                        Register
+                    </a>
                 </p>
 
-            </div>
+            </form>
 
-            <!-- RIGHT SIDE -->
-            <div class="w-1/2 flex items-center justify-center bg-[#FFFDFD]">
+        </div>
 
-                <form method="POST"
-                      action="{{ route('login') }}"
-                      class="w-[78%]">
+    </div>
 
-                    @csrf
+</div>
 
-                    <h2 class="text-4xl font-black text-gray-800 mb-2">
-                        Welcome Back!
-                    </h2>
-
-                    <p class="text-gray-400 mb-10 text-lg">
-                        Login ke akun kamu dulu 🍓
-                    </p>
-
-                    <!-- EMAIL -->
-                    <div class="mb-5">
-
-                        <x-input-label
-                            for="email"
 </x-guest-layout>
