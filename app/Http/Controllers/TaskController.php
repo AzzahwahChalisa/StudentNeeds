@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -21,12 +22,16 @@ class TaskController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required'
+        ]);
+
         Task::create([
-            'user_id' => auth()->id(),
+            'user_id' => Auth::id(),
             'title' => $request->title,
             'description' => $request->description,
             'deadline' => $request->deadline,
-            'status' => 'pending',
+            'status' => 'pending'
         ]);
 
         return redirect('/tasks');
