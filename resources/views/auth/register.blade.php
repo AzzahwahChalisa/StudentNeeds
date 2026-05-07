@@ -1,89 +1,137 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name"
-                class="block mt-1 w-full"
-                type="text"
-                name="name"
-                :value="old('name')"
-                required
-                autofocus
-                autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+<style>
+body {
+    margin: 0;
+    background: #FEF1F2;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* FULL SCREEN */
+.screen {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CARD */
+.card {
+    width: 707px;
+    height: 757px;
+    background: #fff;
+    border-radius: 69px;
+    padding: 50px;
+    position: relative;
+}
+
+/* HEADER */
+.header {
+    text-align: center;
+    margin-top: -120px;
+}
+
+.header img {
+    width: 200px;
+}
+
+.title {
+    font-family: 'Baloo 2';
+    font-size: 40px;
+}
+
+.student { color: #E65F5F; }
+.needs { color: #6A3A3C; }
+
+/* FORM */
+label {
+    display: block;
+    margin-top: 15px;
+    color: #6A3A3C;
+    font-weight: 500;
+}
+
+input, select {
+    width: 100%;
+    height: 70px;
+    border-radius: 20px;
+    border: 1px solid #6A3A3C;
+    background: #FDFAF9;
+    padding: 10px;
+    font-size: 16px;
+}
+
+/* BUTTON */
+button {
+    width: 200px;
+    height: 70px;
+    background: #E65F5F;
+    border: none;
+    border-radius: 25px;
+    color: white;
+    font-size: 28px;
+    font-family: 'Baloo 2';
+    position: absolute;
+    right: 40px;
+    bottom: 40px;
+    cursor: pointer;
+}
+
+/* LOGIN */
+.login {
+    position: absolute;
+    left: 40px;
+    bottom: 40px;
+    color: #6A3A3C;
+}
+.login a {
+    color: #E65F5F;
+    text-decoration: none;
+}
+</style>
+
+<div class="screen">
+
+    <div class="card">
+
+        <div class="header">
+            <img src="{{ asset('ikonstoberry.png') }}">
+            <div class="title">
+                <span class="student">Student</span>
+                <span class="needs">Needs</span>
+            </div>
         </div>
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email"
-                class="block mt-1 w-full"
-                type="email"
-                name="email"
-                :value="old('email')"
-                required
-                autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+        <form method="POST" action="{{ route('register') }}">
+            @csrf
 
-        <!-- Role -->
-        <div class="mt-4">
-            <x-input-label for="role" :value="__('Role')" />
+            <label>Nama</label>
+            <input type="text" name="name">
 
-            <select name="role"
-                id="role"
-                class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
-                required>
+            <label>Email</label>
+            <input type="email" name="email">
 
-                <option value="">Pilih Role</option>
-                <option value="siswa">Siswa</option>
-                <option value="guru">Guru</option>
-
+            <label>Role</label>
+            <select name="role">
+                <option>Siswa</option>
+                <option>Guru</option>
             </select>
+
+            <label>Password</label>
+            <input type="password" name="password">
+
+            <label>Confirm Password</label>
+            <input type="password" name="password_confirmation">
+
+            <button type="submit">Daftar</button>
+
+        </form>
+
+        <div class="login">
+            Sudah punya akun? <a href="{{ route('login') }}">Login</a>
         </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+    </div>
 
-            <x-text-input id="password"
-                class="block mt-1 w-full"
-                type="password"
-                name="password"
-                required
-                autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation"
-                class="block mt-1 w-full"
-                type="password"
-                name="password_confirmation"
-                required
-                autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-
-        </div>
-    </form>
-</x-guest-layout>
+</div>
