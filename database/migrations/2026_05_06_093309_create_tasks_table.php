@@ -13,11 +13,16 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('teacher_id')->constrained('users')->onDelete('cascade');
+
+            $table->foreignId('user_id')
+                ->constrained()
+                ->onDelete('cascade');
+                
             $table->string('title');
             $table->text('description')->nullable();
             $table->date('deadline')->nullable();
-            $table->integer('xp_reward')->default(10);
+            $table->enum('status', ['pending', 'progress', 'completed'])
+                ->default('pending');
             $table->timestamps();
         });
     }

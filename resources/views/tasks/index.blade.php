@@ -1,10 +1,32 @@
-<h1>Daftar Tugas</h1>
+<h1>Assignment List</h1>
 
 @foreach($tasks as $task)
+
     <div>
-        <h3>{{ $task->title }}</h3>
+        <h2>{{ $task->title }}</h2>
+
         <p>{{ $task->description }}</p>
-        <small>XP: {{ $task->xp_reward }}</small>
+
+        <p>Deadline: {{ $task->deadline }}</p>
+
+        <p>Status: {{ $task->status }}</p>
+
+        @if($task->status != 'completed')
+
+            <form action="/tasks/{{ $task->id }}/complete" method="POST">
+
+                @csrf
+                @method('PATCH')
+
+                <button type="submit">
+                    Mark as Completed
+                </button>
+
+            </form>
+
+        @endif
+
         <hr>
     </div>
+
 @endforeach

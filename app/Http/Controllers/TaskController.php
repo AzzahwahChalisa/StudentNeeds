@@ -9,7 +9,7 @@ class TaskController extends Controller
 {
     public function index()
     {
-        $tasks = Task::all();
+        $tasks = auth()->user()->tasks;
 
         return view('tasks.index', compact('tasks'));
     }
@@ -22,11 +22,20 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         Task::create([
-            'teacher_id' => auth()->id(),
+            'user_id' => auth()->id(),
             'title' => $request->title,
             'description' => $request->description,
             'deadline' => $request->deadline,
-            'xp_reward' => $request->xp_reward,
+            'status' => 'pending',
+        ]);
+
+        return redirect('/tasks');
+    }
+
+    public function complete(Task $task)
+    {
+        $task->update([
+            'status' => 'completed'
         ]);
 
         return redirect('/tasks');
