@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\TaskController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,21 +21,28 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
 
 /*
 |--------------------------------------------------------------------------
+| Tasks
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware(['auth'])->group(function () {
+
+    Route::post('/tasks', [TaskController::class, 'store'])
+        ->name('tasks.store');
+
+    Route::patch('/tasks/{task}', [TaskController::class, 'update'])
+        ->name('tasks.update');
+
+});
+
+/*
+|--------------------------------------------------------------------------
 | Dashboard Siswa
 |--------------------------------------------------------------------------
 */
 Route::get('/dashboard-siswa', function () {
     return view('dashboard.siswa');
 })->middleware(['auth'])->name('dashboard.siswa');
-
-/*
-|--------------------------------------------------------------------------
-| Dashboard Guru
-|--------------------------------------------------------------------------
-*/
-Route::get('/dashboard-guru', function () {
-    return view('dashboard.guru');
-})->middleware(['auth'])->name('dashboard.guru');
 
 /*
 |--------------------------------------------------------------------------
