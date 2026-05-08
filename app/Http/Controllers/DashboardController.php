@@ -3,31 +3,37 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
-use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        $tasks = Task::where('user_id', Auth::id())
-            ->latest()
-            ->get();
+        $tasks = Task::latest()->get();
 
-        $completed = $tasks
-            ->where('is_completed', true)
-            ->count();
+        $total = Task::count();
 
-        $unfinished = $tasks
-            ->where('is_completed', false)
-            ->count();
+        $completed = Task::where('status', 'Completed')->count();
 
-        $total = $tasks->count();
+        $unfinished = Task::where('status', '!=', 'Completed')->count();
 
         return view('dashboard.siswa', compact(
+
             'tasks',
+            'total',
             'completed',
-            'unfinished',
-            'total'
+            'unfinished'
+
         ));
+    }
+
+    public function toggle(Task $task)
+    {
+        $task->status = $task->status == 'Completed'
+            ? 'Pending'
+            : 'Completed';
+
+        $task->save();
+
+        return redirect()->back();
     }
 }

@@ -6,12 +6,8 @@
         Dashboard
     </a>
 
-    <a href="#">
+    <a href="{{ route('tasks') }}">
         Tasks
-    </a>
-
-    <a href="#">
-        Schedule
     </a>
 
     <a href="{{ route('profile.edit') }}">

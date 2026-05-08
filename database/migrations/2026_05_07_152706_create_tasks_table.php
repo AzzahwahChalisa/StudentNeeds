@@ -18,10 +18,17 @@ return new class extends Migration
 
             $table->string('title');
 
-            $table->boolean('is_completed')
-                ->default(false);
+            $table->text('description')
+                ->nullable();
+
+            $table->date('deadline')
+                ->nullable();
+
+            $table->string('status')
+                ->default('Pending');
 
             $table->timestamps();
+
         });
     }
 

@@ -11,23 +11,44 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required'
+
+            'title' => 'required',
+            'description' => 'nullable',
+            'deadline' => 'nullable'
+
         ]);
 
         Task::create([
+
             'user_id' => Auth::id(),
             'title' => $request->title,
-            'is_completed' => false
+            'description' => $request->description,
+            'deadline' => $request->deadline,
+            'status' => 'Pending'
+
         ]);
 
         return redirect()->back();
     }
 
-    public function update(Task $task)
+    public function update(Request $request, Task $task)
     {
-        $task->update([
-            'is_completed' => !$task->is_completed
+        $request->validate([
+
+            'status' => 'required'
+
         ]);
+
+        $task->status = $request->status;
+
+        $task->save();
+
+        return redirect()->back();
+    }
+
+    public function destroy(Task $task)
+    {
+        $task->delete();
 
         return redirect()->back();
     }
