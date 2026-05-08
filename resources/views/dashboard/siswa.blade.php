@@ -18,27 +18,6 @@
             display:flex;
         }
 
-        .sidebar{
-            width:220px;
-            height:100vh;
-            background:white;
-            padding:20px;
-        }
-
-        .sidebar a,
-        .sidebar button{
-            display:block;
-            width:100%;
-            margin-top:15px;
-            padding:12px;
-            border:none;
-            border-radius:10px;
-            background:#f8dede;
-            text-decoration:none;
-            color:black;
-            cursor:pointer;
-        }
-
         .content{
             flex:1;
             padding:30px;
@@ -107,7 +86,7 @@
 
 <div class="container">
 
-    @include('components.sidebar')
+    {{-- @include('components.sidebar') --}}
 
     <div class="content">
 
